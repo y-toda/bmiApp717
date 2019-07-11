@@ -15,4 +15,6 @@
     <string name="cm">cm</string>
     <string name="kg">kg</string>
     <string name="comment">コメント</string>
+    <string name="inputButton">入力</string>
+    <string name="listButton">履歴</string>
 </resources>
