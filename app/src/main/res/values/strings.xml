@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">bmiApp</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="textContents">身長と体重を入力してください</string>
+    <string name="textcontents">身長</string>
+    <string name="weight">体重</string>
+    <string name="bmiCal">BMIを計算する</string>
+    <string name="deleteButton">削除</string>
+    <string name="saveButton">保存する</string>
+    <string name="leftTab">入力</string>
+    <string name="rightTab">履歴</string>
+    <string name="hint">コメント</string>
+    <string name="cm">cm</string>
+    <string name="kg">kg</string>
+    <string name="comment">コメント</string>
+</resources>
