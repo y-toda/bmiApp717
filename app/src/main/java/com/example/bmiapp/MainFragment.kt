@@ -42,7 +42,7 @@ class MainFragment : Fragment(), onClickListener{
             var strWeight = weight.text.toString()
 
             //今日の日付を呼び出す
-            var date: Date = Date()
+            var date = Date()
             val id: String = DateFormat.format("yyyyMMdd", date).toString()
 
             //アラートダイアログ:身長/体重が300を超えたらダイアログを出す
@@ -73,15 +73,20 @@ class MainFragment : Fragment(), onClickListener{
             val deleteButton = view.findViewById<View>(R.id.deleteButton)
             //削除ボタン
             deleteButton.setOnClickListener {
-                //            //今日の日付を呼び出す
-//            var date: Date = Date()
-//            val id: String = DateFormat.format("yyyy/MM/dd", date).toString()
-//
-//            val pref = PreferenceManager.getDefaultSharedPreferences(this)
-//            //削除する
-//            var itemsImpl = ItemsDaoImpl(pref)
-//            //saveメソッドの呼び出し
-//            itemsImpl.delete(id)
+
+                Log.d("deleteButton", "ボタンは押せたよ")
+                //今日の日付を呼び出す
+                var date: Date = Date()
+                val id: String = DateFormat.format("yyyyMMdd", date).toString()
+
+                val pref = PreferenceManager.getDefaultSharedPreferences(activity)
+                //削除する
+                var itemsImpl = ItemsDaoImpl(pref)
+                //saveメソッドの呼び出し
+                itemsImpl.delete(id)
+                itemsImpl.flush()
+
+                Log.d("deleteButton", "削除しました。")
 
             }
 
@@ -92,12 +97,13 @@ class MainFragment : Fragment(), onClickListener{
                 var strHeight = height.text.toString()
                 var strWeight = weight.text.toString()
                 var bmi = calculateLogic(strHeight, strWeight)
+                var contents: String? = contents.text.toString()
 
                 //今日の日付を呼び出す
                 var date: Date = Date()
                 val id: String = DateFormat.format("yyyyMMdd", date).toString()
 
-                val pref = PreferenceManager.getDefaultSharedPreferences(activity)  //TODO
+                val pref = PreferenceManager.getDefaultSharedPreferences(activity)
 
                 //アラートダイアログ:BMIが未入力のとき
                 if (bmi == null) {
@@ -115,12 +121,12 @@ class MainFragment : Fragment(), onClickListener{
                     var itemsImpl = ItemsDaoImpl(pref)
 
                     //saveメソッドの呼び出し
-                    var saveResult = itemsImpl.save(ItemsOfBMI(id, strHeight, strWeight, bmi.toString()))
+                    var saveResult = itemsImpl.save(ItemsOfBMI(id, strHeight, strWeight, bmi.toString(), contents))
 
                     if(!saveResult){
 
                         //updateメソッドの呼び出し
-                        itemsImpl.update(id, ItemsOfBMI(id, strHeight, strWeight, bmi.toString()))
+                        itemsImpl.update(id, ItemsOfBMI(id, strHeight, strWeight, bmi.toString(), contents))
                     }
 
                     //applyするためのメソッド呼び出し

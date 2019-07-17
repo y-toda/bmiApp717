@@ -6,29 +6,67 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class ViewAdapter(private val list: List<RowModel>, private val listener: ListListener) : RecyclerView.Adapter<ViewHolder>() {
+class ViewAdapter(private val list: List<RowModel>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        Log.d("aAdapter", "onCreateViewHolder")
-        val rowView: View = LayoutInflater.from(parent.context).inflate(R.layout.recycler_item, parent, false)
-        return ViewHolder(rowView)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+
+        when(RecyclerType.fromInt((viewType))) {
+            /** BODY */
+            RecyclerType.BODY -> {
+                val rowView: View = LayoutInflater.from(parent.context).inflate(R.layout.recycler_item, parent, false)
+                return ViewHolder(rowView)
+
+            }
+
+            /** DETAIL */
+            RecyclerType.DETAIL -> {
+                Log.d("ViewAdapter" ,"onBindViewHolder メモ表示したい")
+
+                val rowView: View = LayoutInflater.from(parent.context).inflate(R.layout.recycler_contents, parent, false)
+                return ViewDetailHolder(rowView)
+            }
+        }
+
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        Log.d("Adapter", "onBindViewHolder")
-        holder.dateView.text = list[position].date
-        holder.heightView.text = list[position].height
-        holder.weightView.text = list[position].weight
-        holder.bmiView.text = list[position].bmi
+
+    /**
+     * RecyclerView.ViewHolder : 1行分のViewの参照を保持するもの
+     */
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when(holder) {
+            is ViewHolder -> {
+                Log.d("ViewAdapter" ,"onBindViewHolder メモは表示しないです")
+
+                // holder as ViewHolder
+                holder.dateView.text = list[position].item.id
+                holder.heightView.text = list[position].item.strHeight
+                holder.weightView.text = list[position].item.strWeight
+                holder.bmiView.text = list[position].item.bmiResult
+            }
+
+            is ViewDetailHolder -> {
+                Log.d("ViewAdapter" ,"onBindViewHolder メモ表示したいです")
+
+//                holder.dateView.text = list[position].item.id
+//                holder.heightView.text = list[position].item.strHeight
+//                holder.weightView.text = list[position].item.strWeight
+//                holder.bmiView.text = list[position].item.bmiResult
+                holder.contentsView.text = list[position].item.contents
+            }
+
+            else -> {
+
+            }
+        }
+    }
+
+    //これいれないとコメント返さない
+    override fun getItemViewType(position: Int): Int {
+        return list[position].type.int
     }
 
     override fun getItemCount(): Int {
-        Log.d("Adapter", "getItemCount")
         return list.size
     }
-
-    interface ListListener {
-        fun onClickRow(tappedView: View, rouModel: RowModel)
-    }
-
 }

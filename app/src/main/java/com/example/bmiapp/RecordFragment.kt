@@ -1,50 +1,66 @@
 package com.example.bmiapp
 
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.dao.ItemsDaoImpl
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_record.*
 
 class RecordFragment : Fragment()  {
 
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_record, container, false)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("lifeCycle", "onViewCreated")
 
-        val recyclerView = recycler_list
-        val adapter = ViewAdapter(createDataList(), object : ViewAdapter.ListListener {
-            override fun onClickRow(tappedView: View, rowModel: RowModel) {
-                this@RecordFragment.onClickRow(tappedView, rowModel)
-            }
-        })
+        val recyclerView = recycle_id
+        val adapter = ViewAdapter(createDataList())
 
-//        recyclerView.setHasFixedSize(true)
-//        recyclerView.layoutManager = LinearLayoutManager(activity)
-//        recyclerView.adapter = adapter
+        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager = LinearLayoutManager(activity)
+        recyclerView.adapter = adapter
     }
 
     private fun createDataList(): List<RowModel> {
 
+        //登録されたデータの取得
+        val pref = PreferenceManager.getDefaultSharedPreferences(activity)
+        val dao = ItemsDaoImpl(pref)
+        val itemsList = dao.findAll()
+
         val dataList = mutableListOf<RowModel>()
-        for (i in 0..49) {
-            val data: RowModel = RowModel().also {
-                it.date = "タイトル" + i + "だよ"
-                it.height = "詳細" + i + "個目だよ"
-                it.weight = "weight"
-                it.bmi = "bmi"
+        itemsList.forEach {
+//            val data = RowModel(0 , it)
+
+            val data = it
+
+//            it.id = sortBy
+            //if()月初めだったら
+
+
+            // BODYをセット
+            val body = RowModel(RecyclerType.BODY, data)
+            dataList.add(body)
+
+            // メモが登録された
+            if(!data.contents.isNullOrEmpty()){
+                val detail = RowModel(RecyclerType.DETAIL, data)
+                dataList.add(detail)
             }
-            dataList.add(data)
         }
         return dataList
-    }
-
-
-    fun onClickRow(tappedView: View, rowModel: RowModel) {
-        Snackbar.make(tappedView, "Replace with your own action tapped ${rowModel.date}", Snackbar.LENGTH_LONG)     //dateは元々titleが入ってたヨ
-            .setAction("Action", null).show()
     }
 }

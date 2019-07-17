@@ -68,8 +68,7 @@ class ItemsDaoImpl(sharedPreferences: SharedPreferences) {
         itemsList.forEach {
             if(it?.id == id) {
                 // 削除対象のインデックスを取得
-                val index = itemsList.indexOf(it)
-                itemsList.drop(index)
+                itemsList.remove(it)
 
                 // 削除が完了したらtrue
                 return true

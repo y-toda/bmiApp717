@@ -10,3 +10,7 @@ class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
     val weightView: TextView = itemView.findViewById(R.id.row_weight)
     val bmiView: TextView = itemView.findViewById(R.id.row_bmi)
 }
+
+class ViewDetailHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    val contentsView: TextView = itemView.findViewById(R.id.contentsDetail)
+}

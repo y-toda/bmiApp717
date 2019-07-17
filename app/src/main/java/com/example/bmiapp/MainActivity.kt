@@ -45,6 +45,14 @@ class MainActivity : AppCompatActivity() {
                 .commit()
         }
 
+        inputButton.setOnClickListener {
+            val mainContainerFragment = MainFragment()
+            val fragmentManager = this.getSupportFragmentManager()
+            val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.container, mainContainerFragment)
+                .addToBackStack(null)
+                .commit()
+        }
 
 
     }

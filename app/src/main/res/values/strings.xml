@@ -9,12 +9,13 @@
     <string name="bmiCal">BMIを計算する</string>
     <string name="deleteButton">削除</string>
     <string name="saveButton">保存する</string>
-    <string name="leftTab">入力</string>
-    <string name="rightTab">履歴</string>
     <string name="hint">コメント</string>
     <string name="cm">cm</string>
     <string name="kg">kg</string>
     <string name="comment">コメント</string>
     <string name="inputButton">入力</string>
     <string name="listButton">履歴</string>
+    <string name="row_contents">contents</string>
+    <string name="leftTab">入力</string>
+    <string name="rightTab">履歴</string>
 </resources>
