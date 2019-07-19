@@ -12,25 +12,31 @@
             android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:id="@+id/container" app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/container"
             app:layout_constraintBottom_toTopOf="@+id/inputButton"
-    >
+            app:layout_constraintTop_toBottomOf="@+id/headerFragment">
 
     </FrameLayout>
     <Button
             android:text="@string/inputButton"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/inputButton" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toStartOf="@+id/listButton"
-            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"/>
     <Button
             android:text="@string/listButton"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/listButton"
             app:layout_constraintTop_toTopOf="@+id/inputButton"
             app:layout_constraintBottom_toBottomOf="@+id/inputButton"
             app:layout_constraintStart_toEndOf="@+id/inputButton" app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintEnd_toEndOf="parent"/>
+    <fragment
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" android:name="com.example.bmiapp.HeaderFragment"
+            android:id="@+id/headerFragment" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

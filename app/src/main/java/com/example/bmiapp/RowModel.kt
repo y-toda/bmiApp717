@@ -11,7 +11,7 @@ data class RowModel(val type: RecyclerType ,val item: ItemsOfBMI)
  */
 enum class RecyclerType(val int: Int) {
 
-//    SECTION(0),
+    SECTION(0),
     BODY(1),
     DETAIL(2);
 

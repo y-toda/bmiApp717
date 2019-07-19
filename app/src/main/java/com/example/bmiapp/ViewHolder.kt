@@ -11,6 +11,11 @@ class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
     val bmiView: TextView = itemView.findViewById(R.id.row_bmi)
 }
 
+class ViewSectionHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    val sectionView: TextView = itemView.findViewById(R.id.section)
+
+}
+
 class ViewDetailHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val contentsView: TextView = itemView.findViewById(R.id.contentsDetail)
 }

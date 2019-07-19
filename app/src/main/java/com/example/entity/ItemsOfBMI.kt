@@ -8,6 +8,6 @@ class ItemsOfBMI (
     var id: String,
     var strHeight: String,
     var strWeight: String,
-    var bmiResult: String,
+    var bmiResult: String?,
     var contents: String?
 )
