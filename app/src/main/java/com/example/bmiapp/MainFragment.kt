@@ -23,7 +23,7 @@ import java.util.*
  *
  */
 
-class MainFragment : Fragment(), onClickListener {
+class MainFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -126,7 +126,7 @@ class MainFragment : Fragment(), onClickListener {
 
             //アラートダイアログ:BMIが未入力のとき
             if (bmi == null) {
-                Log.d("bmiAlart", "BMIの値がぬるなんだよ！！")
+                Log.d("bmiAlart", "BMIの値がnullだよ")
                 activity?.let { it1 ->
                     AlertDialog.Builder(it1)
                         .setTitle("エラー")
@@ -169,24 +169,21 @@ class MainFragment : Fragment(), onClickListener {
         return bmi
     }
 
-    //共有プリファレンス
-    @SuppressLint("NewApi")
-    private fun saveData(id: String, strHeight: String, strWeight: String, bmi: Float) {
+//    //共有プリファレンス
+//    @SuppressLint("NewApi")
+//    private fun saveData(id: String, strHeight: String, strWeight: String, bmi: Float) {
+//
+//        val pref = PreferenceManager.getDefaultSharedPreferences(getActivity())
+//
+//        val editor = pref.edit()
+//        editor.putString("DATE", id)
+//            .putString("HEIGHT", strHeight)
+//            .putString("WEIGHT", strWeight)
+//            .putString("BMI", bmi.toString())
+//            .apply()
+//
+//    }
 
-        val pref = PreferenceManager.getDefaultSharedPreferences(getActivity())
-
-        val editor = pref.edit()
-        editor.putString("DATE", id)
-            .putString("HEIGHT", strHeight)
-            .putString("WEIGHT", strWeight)
-            .putString("BMI", bmi.toString())
-            .apply()
-
-    }
-
-
-}
-
-interface onClickListener {
 
 }
+

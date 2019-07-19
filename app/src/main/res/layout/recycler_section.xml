@@ -12,6 +12,7 @@
                 android:layout_height="wrap_content"
                 android:background="#CCCCCC"
                 android:id="@+id/section"
+                android:textSize="15sp"
                 android:textStyle="bold"/>
     </LinearLayout>
 </LinearLayout>
