@@ -1,9 +1,7 @@
 package com.example.bmiapp
 
-import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -13,7 +11,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         val mainContainerFragment = MainFragment()
         val fragmentManager = this.getSupportFragmentManager()
         val fragmentTransaction = fragmentManager.beginTransaction()
@@ -21,12 +18,9 @@ class MainActivity : AppCompatActivity() {
             .addToBackStack(null)
             .commit()
 
-
         //フラグメント処理の呼び出し
         val mainFragment = headerFragment as? HeaderFragment
         mainFragment?.setHeader("入力")
-
-
 
         listButton.setOnClickListener {
 

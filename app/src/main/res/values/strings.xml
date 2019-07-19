@@ -18,4 +18,8 @@
     <string name="row_contents">contents</string>
     <string name="leftTab">入力</string>
     <string name="rightTab">履歴</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

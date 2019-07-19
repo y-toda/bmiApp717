@@ -41,7 +41,7 @@ class MainFragment : Fragment(), onClickListener {
             var date = Date()
             val id: String = DateFormat.format("yyyyMMdd", date).toString()
 
-            //TODO 正規表現したい
+            //正規表現したい
             val regex = Regex("""\d{1,3}(\.\d{1})?""")
             val heightRule = regex.matches("${strHeight}")
             val weightRule = regex.matches("${strWeight}")
